@@ -1,5 +1,9 @@
 package com.example.chat.ui
 
-fun ChatScreen(){
-    
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+
+@Composable
+fun ChatScreen(chatId: String, onBack: () -> Unit) {
+
 }
