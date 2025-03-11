@@ -6,18 +6,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.chat.ui.ChatScreen
-import com.example.conversations.ui.ConversationsList
+import com.example.conversations.ui.ConversationsListScreen
 import com.example.create_chat.ui.CreateConversationScreen
-import com.example.framework.ui.NavRoutes
+import com.example.framework.navigation.NavRoutes
 
 @Composable
 fun WhatAppCloneNavigation(navController: NavHostController) {
     NavHost(navController, startDestination = NavRoutes.ConversationsList) {
         addConversationsList(navController)
-        addConversationsList(navController)
+        addNewConversation(navController)
         addChat(navController)
     }
 }
@@ -26,7 +25,7 @@ private fun NavGraphBuilder.addConversationsList(
     navHostController: NavHostController
 ) {
     composable(NavRoutes.ConversationsList) {
-        ConversationsList(onNewConversationClick = {
+        ConversationsListScreen(onNewConversationClick = {
             navHostController.navigate(
                 NavRoutes.NewConversation
             )
