@@ -39,6 +39,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":common:data"))
+    implementation(project(":common:framework"))
+    implementation(project(":common:domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -57,6 +60,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.navigation)
     implementation(libs.hilt)
+    implementation(libs.hilt.navigation)
 
     ksp(libs.dagger.kapt)
 }

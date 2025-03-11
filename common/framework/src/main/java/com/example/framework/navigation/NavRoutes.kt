@@ -1,4 +1,4 @@
-package com.example.framework.ui
+package com.example.framework.navigation
 
 object NavRoutes {
     const val ConversationsList = "conversations_list"
