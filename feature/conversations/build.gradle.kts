@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.navigation)
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)
+    implementation(libs.coil)
 
     ksp(libs.dagger.kapt)
 }
