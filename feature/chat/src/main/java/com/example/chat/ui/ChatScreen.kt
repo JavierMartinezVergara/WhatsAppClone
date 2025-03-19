@@ -22,6 +22,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,42 +32,58 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.chat.domain.usecases.SendMessage
 import com.example.chat.ui.model.Message
 import com.example.chat.ui.model.MessageContent
+import com.example.chat.ui.viewmodel.ChatViewModel
 import com.example.framework.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChatScreen(chatId: String, onBack: () -> Unit) {
+fun ChatScreen(
+    viewModel: ChatViewModel = hiltViewModel(),
+    chatId: String?, onBack: () -> Unit
+) {
+    val messages by viewModel.messages.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
+    LaunchedEffect(Unit) {
+        viewModel.loadChatInformation(chatId.orEmpty())
+    }
     Scaffold(
         topBar = {
             TopAppBar(title = {
-                Text(stringResource(R.string.chat_title, "Alice"))
+                Text(stringResource(R.string.chat_title, uiState.name.orEmpty()))
             })
         },
         bottomBar = {
-            SendMessageBox()
+            SendMessageBox {
+                viewModel.onSendMessage(it)
+            }
         }
     ) { paddingValues ->
-        ListOfMessages(paddingValues = paddingValues)
+        ListOfMessages(messages = messages, paddingValues = paddingValues)
     }
 }
 
 @Composable
-fun ListOfMessages(paddingValues: PaddingValues) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(paddingValues)) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+fun ListOfMessages(messages: List<Message>, paddingValues: PaddingValues) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                items(getFakeMessages()) { message ->
+                items(messages) { message ->
                     MessageItem(message = message)
                 }
             }
@@ -159,7 +177,7 @@ fun getFakeMessages(): List<Message> {
 }
 
 @Composable
-fun SendMessageBox() {
+fun SendMessageBox(onSendMessage: (String) -> Unit) {
     Box(
         modifier = Modifier
             .defaultMinSize()
@@ -182,6 +200,7 @@ fun SendMessageBox() {
                 .align(Alignment.CenterEnd)
                 .height(56.dp),
             onClick = {
+                onSendMessage(text)
                 text = ""
             }
         ) {
