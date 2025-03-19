@@ -63,5 +63,11 @@ dependencies {
     implementation(libs.hilt.navigation)
     implementation(libs.coil)
 
+    implementation(libs.ktor.web.sockets)
+    implementation(libs.ktor.okhtttp)
+    implementation(libs.ktor.negotiation)
+    implementation(libs.ktor.serialization)
+    implementation(libs.ktor.android)
+
     ksp(libs.dagger.kapt)
 }

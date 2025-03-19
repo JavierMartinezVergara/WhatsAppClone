@@ -1,5 +1,7 @@
 package com.example.chat.ui.model
 
+import com.example.chat.domain.model.DomainMessage
+
 data class Message(
     val id: String,
     val senderName: String,
@@ -10,6 +12,6 @@ data class Message(
 )
 
 sealed class MessageContent {
-    data class TextMessage(val message: String): MessageContent()
-    data class ImageMessage(val imageUrl: String, val contentDescription: String): MessageContent()
+    data class TextMessage(val message: String) : MessageContent()
+    data class ImageMessage(val imageUrl: String, val contentDescription: String) : MessageContent()
 }
