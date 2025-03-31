@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlinAndroidKsp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -35,11 +36,15 @@ android {
 
 dependencies {
 
+    implementation(project(":common:domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.coroutines.play.services)
+    implementation(libs.hilt)
 
+    ksp(libs.dagger.kapt)
 }

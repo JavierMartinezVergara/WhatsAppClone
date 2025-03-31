@@ -69,5 +69,10 @@ dependencies {
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.android)
 
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.messaging)
+
     ksp(libs.dagger.kapt)
 }
