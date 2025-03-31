@@ -16,6 +16,9 @@ hiltNavigation = "1.0.0"
 ksp = "2.0.21-1.0.27"
 coil = "2.3.0"
 ktor = "2.2.4"
+firebase-bom = "32.8.1"
+gms = "4.4.2"
+coroutines_play_services = "1.6.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +47,11 @@ ktor-okhtttp = { group="io.ktor", name = "ktor-client-okhttp", version.ref = "kt
 ktor-negotiation = { group="io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor"}
 ktor-android = { group="io.ktor", name = "ktor-client-android", version.ref = "ktor"}
 ktor-serialization = { group="io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor"}
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines_play_services" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -52,4 +60,4 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 android-library = { id = "com.android.library", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-
+gms = { id = "com.google.gms.google-services", version.ref = "gms" }

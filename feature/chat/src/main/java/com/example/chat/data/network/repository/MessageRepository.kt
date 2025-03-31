@@ -11,7 +11,7 @@ class MessageRepository @Inject constructor(
 ): IMessageRepository{
 
     override suspend fun getMessages(): Flow<DomainMessage> {
-        return  dataSource.connect()
+        return dataSource.connect()
     }
 
     override suspend fun sendMessage(domainMessage: DomainMessage) {
